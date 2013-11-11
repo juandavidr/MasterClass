@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131105045534) do
+ActiveRecord::Schema.define(version: 20131105054723) do
 
   create_table "preregister_subjects", force: true do |t|
     t.integer  "semester_id"
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 20131105045534) do
     t.text     "code"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "password_digest"
   end
 
 end

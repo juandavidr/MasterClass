@@ -1,0 +1,19 @@
+<%= link_to "Add new Subject", subjects_new_path %>
+</br></br></br>
+<% unless @subjects.nil? %>
+  <table  border="1">
+    <tr>
+      <td>Name</td>
+      <td>Email</td>
+      <td>Accion</td>
+    </tr>
+    <% for subject in @subject_list do %>  
+        <tr>
+          <td><%= "#{subject.code}" %></td>
+          <td><%= "#{subject.email}" %></td>
+          <td><%= link_to I18n.t('editar'), subject, method: :edit,  data: { confirm: I18n.t('seguro') } %></td>
+          <td><%= link_to I18n.t('disable'), subject, method: :disable,  data: { confirm: I18n.t('seguro') } %></td>
+          <td><%= link_to I18n.t('delete'), subject, method: :delete,  data: { confirm: I18n.t('seguro') } %></td>
+        </tr>
+      <% end %>  
+    <% end %>

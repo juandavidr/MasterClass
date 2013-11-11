@@ -11,10 +11,10 @@ MasterClassNB::Application.routes.draw do
   get "register_subjects/index"
   get "register_subjects/edit"
   get "register_subjects/create"
-  get "subject/new"
-  get "subject/index"
-  get "subject/edit"
-  get "subject/create"
+  get "subjects/new"
+  get "subjects/index"
+  get "subjects/edit"
+  get "subjects/create"
   get "programs/create"
   get "programs/new"
   get "programs/index"
@@ -31,6 +31,9 @@ MasterClassNB::Application.routes.draw do
   get "users/show"
   
   resources :users
+  resources :subjects
+  resources :preregister_subjects
+  resources :sessions, only: [:new, :create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

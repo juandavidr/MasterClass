@@ -1,1 +1,38 @@
-<%=link_to "Add new user", user_new_path %>
+<% provide(:title, "usuario") %>
+
+<div class="formoid-default-skyblue" style="background-color:#FFFFFF;font-size:14px;font-family:'Open Sans','Helvetica Neue','Helvetica',Arial,Verdana,sans-serif;color:#666666;max-width:480px;min-width:150px">
+  <div class="title">
+      <h1>
+       
+        <%= @user.firstname %> <%= @user.lastname %>
+      </h1>
+
+      <%= @user.code %>, <%= @user.identificationtype %>, <%= @user.identification %>, <%= @user.status %>, <%= @user.usertype %>, <%= @user.email %>
+   </div>
+  <div class="span6 offset3" >
+    <% if @user.programs.any? %>
+      <h3>Programs</h3>
+      <ol class="programs">
+        <%= render @programs %>
+      </ol>
+      <%= will_paginate @programs %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="span8">
+
+    <% if @user.preregister_subjects.any? %>
+      <% if @user.usertype.eql?("Estudiante") && !@program.nil?%>
+        <h3><%=I18n.t('usuario.preregistro')+" "+@program.name %></h3>
+     <%= link_to "delete all", preregister_subject_path(:all => 1,:user_id =>@user.id,:program_id =>@program.id), method: :delete,
+                                  data: { confirm: "You sure?" } %>
+      <ol class="programs">
+        <%= render @preregister_subjects %>
+      </ol>
+      <%= will_paginate @preregister_subjects %>
+    <% end %>
+    <% end %>
+  </div>
+</div>
+
