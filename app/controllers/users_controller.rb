@@ -51,9 +51,29 @@ class UsersController < ApplicationController
   def disable
     @user = User.find(params[:id])
     @user.update_attribute(:status, "Inactivo")
-    flash[:success] = I18n.t('usuario.deshabilitado') 
- 
-     
+    flash[:success] = I18n.t('usuario.deshabilitado')      
+  end
+  
+  def update
+    @user = User.find(params[:id])  
+      if @user.update_attributes(user_params)
+        
+#            params[:programs].each do |program|
+#            user_programs = UserProgram.new(program_id: program, user_id: @user.id, status: "Activo")
+#            if user_programs.valid?
+#              user_programs.save
+#            else
+#              flash.now[:error] = 'Cant save user program'
+#              #@errors += user_programs.errors
+#            end 
+#        end
+        flash[:success] = "La informacion del usuario se ha actualizado exitosamente"
+#        sign_in @user
+        redirect_to users_url
+      else
+        flash[:error]="Ocurrio un error al editar el usuario"
+        render 'edit'
+      end
   end
   
   def user_params

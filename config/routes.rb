@@ -24,14 +24,24 @@ MasterClassNB::Application.routes.draw do
   get "semesters/edit"
   get "semesters/show"
   get "semesters/create"
-  root 'users#index'
+  
   get "users/new"
   get "users/index"
   get "users/edit"
   get "users/show"
   
+
+  match '/help', to: 'general#help', via: 'get'
+  match '/about',   to: 'general#about',   via: 'get'
+  match '/signin',  to: 'sessions#new',         via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'  
+
+  root 'general#index'
+  
   resources :users
+  resources :programs
   resources :subjects
+  resources :semesters
   resources :preregister_subjects
   resources :sessions, only: [:new, :create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.

@@ -21,9 +21,15 @@
           <%= link_to "Master Class", '#', id: "logo" %>
           <nav>
             <ul class="nav pull-right">
-              <li><%= link_to "Home",    '#' %></li>
-              <li><%= link_to "Help",    '#' %></li>
-              <li><%= link_to "Sign in", '#' %></li>
+              <% if signed_in? %>        
+                <li><%= link_to "Usuarios",    users_url %></li>
+                <li><%= link_to "Programas", programs_url %></li>
+                <li><%= link_to "Materias", subjects_url %></li>
+                <li><%= link_to "Semestres", semesters_url%></li>
+              <% else %>
+                <li><%= link_to "Ingresar", signin_path %></li>
+
+              <% end %>
             </ul>
           </nav>
         </div>
@@ -36,7 +42,9 @@
         </div>
       <% end %>
       <%= yield %>
+<%#= render 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development? %>
     </div>
-      <%= javascript_include_tag "formoid-default-skyblue" %>
+    <%= javascript_include_tag "formoid-default-skyblue" %>
   </body>
 </html>

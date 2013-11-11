@@ -26,4 +26,13 @@ MasterClassNB::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',#'pod51019.outlook.com',
+    port:                 587,
+    domain:               'gmail.com',#'uniandes.edu.co',
+    user_name:            'juandavidr@gmail.com',#'dav-rod1@uniandes.edu.co',
+    password:             '(cobra)+[vigia]1986',
+    authentication:       'plain',
+    enable_starttls_auto: true  }
 end

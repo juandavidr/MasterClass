@@ -1,2 +1,34 @@
-<h1>Programs#index</h1>
-<p>Find me in app/views/programs/index.html.erb</p>
+<%= link_to "Add new program", programs_new_path %>
+</br></br></br>
+<% unless @program_list.nil? %>
+  <% if @program_list.size>0 %>
+    <table  border="1">
+      <tr>
+        <td>Código</td>
+        <td>Nombre</td>
+        <td>Estado</td>
+        <td colspan="3">Acciones</td>
+      </tr>
+      <% for program in @program_list do %>  
+          <tr>
+            <td><%= "#{program.code}" %></td>
+            <td><%= "#{program.name}" %></td>
+            <td><%= "#{program.status}" %></td>
+            <td><%= link_to I18n.t('delete'), program, method: :delete,  data: { confirm: I18n.t('seguro') } %></td>
+            <td><%= link_to I18n.t('editar'),  edit_program_path(program) %></td>
+            <td>
+              <% if program.status == "Activo" %>
+                <%= link_to I18n.t('disable'), program_path(program,:disable => 1),
+                  data: { confirm: I18n.t('seguro') } %>
+              <% end %>
+              <% if program.status == "Inactivo" %>
+                <%= link_to I18n.t('enable'), program_path(program,:disable => 0),
+                  data: { confirm: I18n.t('seguro') }  %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>  
+      <% else %> 
+          <p>No existen programas disponibles</p>
+      <% end %>  
+    <% end %>

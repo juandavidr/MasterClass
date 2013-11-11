@@ -15,7 +15,7 @@ es:
       exito: "Usuario creado con éxito"
       error: "Ocurrio un error al crear el usuario"
   bienvenida:
-    mensaje: "Bienvenido al coordinador TopClass"
+    mensaje: "MasterClass, una solucion para todos"
   programas:
     titulo: "Todos los programas"
     nuevo: "Nuevo programa"
@@ -28,3 +28,8 @@ es:
     autoregistro: "Preregistro automatico"
     mostrar: "Mostrar materias preregistradas"
     preregistrar: "Preregistrar materia"
+    
+  programa:
+    deshabilitado: "Programa deshabilitado"
+    habilitado: "Programa habilitado"
+      

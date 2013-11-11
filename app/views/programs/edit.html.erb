@@ -1,2 +1,31 @@
-<h1>Programs#edit</h1>
-<p>Find me in app/views/programs/edit.html.erb</p>
+<% provide(:title, 'Edit program') %>
+
+<div class="formoid-default-skyblue" style="background-color:#FFFFFF;font-size:14px;font-family:'Open Sans','Helvetica Neue','Helvetica',Arial,Verdana,sans-serif;color:#666666;max-width:480px;min-width:150px">
+  <div class="title">
+    <h1>Edit program</h1>
+  </div>
+  <div class="span6 offset3" >
+    <%= form_for(@program) do |f| %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+
+      <%= f.label :code %>
+      <%= f.text_field :code %>
+
+
+      <%= f.label :objective %>
+      <%= f.text_area :objective%>
+
+      <%= f.label :status %>
+      <%=f.select(:status,options_for_select([["Activo", "Activo"], ["Inactivo", "Inactivo"]]))%>   
+
+
+
+      <div class="submit">
+        <%= f.submit "Edit program", class: "btn btn-large btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
