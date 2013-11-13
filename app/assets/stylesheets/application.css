@@ -91,19 +91,11 @@ body{
     background-position: left;
 }
 
-.menu-item{
-    width: 250px;
-    background-color: #161646;
-    margin-top: 10px;
-    padding-left: 30px;
-    color: #FFFFFF
 
-
-}
 
 .menu-item{
     width: 250px;
-    background-color: #161646;
+    background-color: #002537;
     margin-top: 10px;
     padding-left: 30px;
     color: #FFFFFF
@@ -114,18 +106,18 @@ body{
 
 .menu-item  > a:hover, .menu-item  > a:focus{
     width: 250px;
-    background-color: #161646;
+    background-color: #002537;
     margin-top: 10px;
-    padding-left: 30px;
+
     color: #FFFFFF
 }
 
 
 .nav >ul>li > a:hover, .nav >ul>li  > a:focus{
     width: 250px;
-    background-color: #161646;
+    background-color: #002537;
     margin-top: 10px;
-    padding-left: 30px;
+
     color: #FFFFFF
 }
 
@@ -175,3 +167,4 @@ table th
 .btn-mc{
     color: #0088cc;
 }
+

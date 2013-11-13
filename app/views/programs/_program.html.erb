@@ -1,19 +1,38 @@
-<tr>
-  <td><%= "#{program.code}" %></td>
-  <td><%= "#{program.name}" %></td>
-  <td><%= "#{program.status}" %></td>
-  <% if current_user.usertype.eql?("Coordinador") || current_user.usertype.eql?("Admin") %>
-    <td><%= link_to I18n.t('delete'), program, method: :delete,  data: { confirm: I18n.t('seguro') } %></td>
-    <td><%= link_to I18n.t('editar'),  edit_program_path(program) %></td>
-    <td>
-      <% if program.status == "Activo" %>
-        <%= link_to I18n.t('disable'), program_path(program,:disable => 1),
-          data: { confirm: I18n.t('seguro') } %>
+<% if !@verusr.nil? && @verusr.eql?("1") %>
+  <tr>
+    <td><%= "#{program.code}" %></td>
+    <td><%= "#{program.name}" %></td>
+    <%if (@user.usertype.eql?("Estudiante") || coordinador?)%>
+      <% if !@user.preregister_subjects.where(program_id: program.id).any? %>
+        <td>  <%= link_to I18n.t('programas.autoregistro'), preregister_subjects_path(:automatic => 1,:user_id =>@user.id,:program_id =>program.id), method: :patch, data: { confirm: I18n.t('seguro')} %></td>
+      <% else %>
+        <td>  <%= link_to I18n.t('programas.mostrar'), preregister_subjects_path(:user_id =>@user.id,:program_id =>program.id), method: :get %></td>
       <% end %>
-      <% if program.status == "Inactivo" %>
-        <%= link_to I18n.t('enable'), program_path(program,:disable => 0),
-          data: { confirm: I18n.t('seguro') }  %>
+      <% if  @user.preregister_subjects.where(program_id: program.id).count < 10 %>
+        <td>  <%= link_to I18n.t('programas.preregistrar'), new_preregister_subject_path(:user_id =>@user.id,:program_id =>program.id), method: :get %></td>
       <% end %>
-    </td>
-  <% end %>
-</tr>
+    <% end %>
+  </tr>
+<% else %>
+  <tr>
+    <td><%= "#{program.code}" %></td>
+    <td><%= "#{program.name}" %></td>
+    <td><%= "#{program.status}" %></td>
+    <% if current_user.usertype.eql?("Coordinador") || current_user.usertype.eql?("Admin") %>
+      <td>
+        <%= link_to  image_tag(('log_eliminar.png'), alt: I18n.t('delete')), program, method: :delete,  data: { confirm: I18n.t('seguro') } %>
+      </td>
+      <td>
+        <%= link_to link_to image_tag(('log_editar.png'), alt: I18n.t('editar')),  edit_program_path(program) %>
+      </td>
+      <td>
+        <% if program.status == "Activo" %>
+          <%= link_to image_tag(('log_desactivar.png'), alt: I18n.t('disable')), program_path(program,:disable => 1), data: { confirm: I18n.t('seguro') } %>
+        <% end %>
+        <% if program.status == "Inactivo" %>
+          <%= link_to image_tag(('log_desactivar.png'), alt: I18n.t('enable')), program_path(program,:disable => 0),          data: { confirm: I18n.t('seguro') }  %>
+        <% end %>
+      </td>
+    <% end %>
+  </tr>
+<% end %>

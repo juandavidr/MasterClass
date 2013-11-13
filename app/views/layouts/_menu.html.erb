@@ -2,28 +2,28 @@
   <ul class="nav pull-right">
     <% if signed_in? %>        
       <li class="menu-item">
-        <%= link_to "Usuarios",    users_url %>
+        <%= link_to image_tag('log_usuario.png') + " Usuarios",    users_url %>
       </li>
 
-      <li class="menu-item"><%= link_to "Materias", subjects_url %></li>
+      <li class="menu-item"><%= link_to image_tag('log_materias.png') + " Materias", subjects_url %></li>
 
       <% if current_user.usertype.eql?("Coordinador") || current_user.usertype.eql?("Admin") %>
         <li class="menu-item">
-          <%= link_to "Programas", programs_url %>
+          <%= link_to image_tag('log_programas.png') +" Programas", programs_url %>
         </li>
         <li class="menu-item">
-          <%= link_to "Semestres", semesters_url%>
+          <%= link_to image_tag('log_semtre.png') +" Semestres", semesters_url%>
         </li>
         <li class="menu-item">
-          <%= link_to "Estadísticas", estadisticas_url%>
+          <%= link_to image_tag('log_estadisticas.png') +" Estadísticas", estadisticas_url%>
         </li>
       <% end %>
       <li class="menu-item">
-        <%= link_to "Información personal", users_mostrar_path(current_user,:id => current_user.id) %>
+        <%= link_to image_tag('logo-infopersonal.png') +" Información personal", users_mostrar_path(current_user,:id => current_user.id) %>
       </li>
-      <li class="menu-item"><%= link_to "Salir", signout_path, method: "delete" %></li>
-    <% else %>
-      <li class="menu-item"><%= link_to "Ingresar", signin_path %></li>
+      <li class="menu-item"><%= link_to image_tag('log_salir.png') +" Salir", signout_path, method: "delete" %></li>
+      <% else %>
+  <%#*<li class="menu-item"><%= link_to "Ingresar", signin_path </li>%>
       <% end %>
   </ul>
 </nav>

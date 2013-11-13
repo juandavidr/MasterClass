@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @programs = @user.programs.paginate(page: params[:page], :per_page => 3)
     @subject_records = @user.subject_records.paginate(page: params[:page])
     @preregister_subjects = @user.preregister_subjects.where(program_id: params[:program_id]).paginate(page: params[:page])
+    @verusr = "1"
 
   end
   

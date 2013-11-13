@@ -45,7 +45,7 @@ MasterClassNB::Application.routes.draw do
   match '/preregister_subjects', to: 'preregister_subjects#destroy',     via: 'delete'  
 #  match '/preregister_subjects', to: 'preregister_subjects#show',     via: 'p'  
 
-  root 'general#index'
+  root 'sessions#new'
   
   resources :users
   resources :programs

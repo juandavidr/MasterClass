@@ -6,21 +6,21 @@
   <% if current_user.usertype.eql?("Coordinador") || current_user.usertype.eql?("Admin") %>
     <td><%= "#{user.status}" %></td>
     <td>
-      <%= link_to I18n.t('delete'), user, method: :delete,  data: { confirm: I18n.t('seguro') } %>
+      <%= link_to image_tag(('log_eliminar.png'), alt: I18n.t('delete')), user, method: :delete,  data: { confirm: I18n.t('seguro') } %>
     </td>
-    <td><%= link_to I18n.t('editar'),  edit_user_path(user) %></td>
+    <td><%= link_to image_tag(('log_editar.png'), alt: I18n.t('editar')),  edit_user_path(user) %></td>
     <td>
       <% if user.status == "Activo" %>
-        <%= link_to I18n.t('disable'), user_path(user,:disable => 1),
+        <%= link_to image_tag(('log_desactivar.png'), alt: I18n.t('disable')) , user_path(user,:disable => 1),
           data: { confirm: I18n.t('seguro') } %>
       <% end %>
       <% if user.status == "Inactivo" %>
-        <%= link_to I18n.t('enable'), user_path(user,:disable => 0),
+        <%= link_to image_tag(('log_desactivar.png'), alt: I18n.t('enable')), user_path(user,:disable => 0),
           data: { confirm: I18n.t('seguro') }  %>
       <% end %>
     </td>
   <% end %>
   <td>
-    <%= link_to I18n.t('ver'),  users_mostrar_path(user,:id => user.id)  %>
+    <%= link_to image_tag(('log_ver.png'), alt: I18n.t('enable')),  users_mostrar_path(user,:id => user.id)  %>
   </td>
 </tr>

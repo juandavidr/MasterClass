@@ -1,8 +1,8 @@
-<% provide(:title, 'Edit User') %>
+<% provide(:title, 'Editar usuario') %>
 
 <div class="formoid-default-skyblue" style="background-color:#FFFFFF;font-size:14px;font-family:'Open Sans','Helvetica Neue','Helvetica',Arial,Verdana,sans-serif;color:#666666;max-width:480px;min-width:150px">
   <div class="title">
-    <h1>Edit User</h1>
+    <h1>Editar usuario</h1>
   </div>
   <div class="span6 offset3" >
     <%= form_for(@user) do |f| %>
@@ -42,7 +42,7 @@
       <%= select_tag "programs", options_from_collection_for_select(Program.all, 'id', 'name',  {selected: @programs_ids,disabled: @programs_ids}), :multiple => (if :usertype then true else"Estudiante".eql?"Estudiante" end) %>
     
       <div class="submit">
-        <%= f.submit "Edit user", class: "btn btn-large btn-primary" %>
+        <%= f.submit "Editar usuario", class: "btn" %>
         </div>
       <% end %>
     </div>

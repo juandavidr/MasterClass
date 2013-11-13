@@ -249,3 +249,21 @@ aside {
     width: 50%;
     margin: auto;
 }
+
+
+.menu-item  > a:hover, .menu-item  > a:focus{
+    width: 250px;
+    background-color: #161646;
+    margin-top: 10px;
+
+    color: #FFFFFF
+}
+
+
+.nav >ul>li > a:hover, .nav >ul>li  > a:focus{
+    width: 250px;
+    background-color: #161646;
+    margin-top: 10px;
+
+    color: #FFFFFF
+}

@@ -4,14 +4,14 @@
   <td><%= "#{subject.quota}" %></td>
   <td><%= "#{subject.status}" %></td>
   <% if current_user.usertype.eql?("Coordinador") || current_user.usertype.eql?("Admin") %>
-    <td><%= link_to I18n.t('editar'),  edit_subject_path(subject) %></td>
+    <td><%= link_to image_tag(('log_editar.png'), alt: I18n.t('editar')),  edit_subject_path(subject) %></td>
     <td>
       <% if subject.status == "Activo" %>
-        <%= link_to I18n.t('disable'), subject_path(subject,:disable => 1),
+        <%= link_to image_tag(('log_desactivar.png'), alt: I18n.t('disable')), subject_path(subject,:disable => 1),
           data: { confirm: I18n.t('seguro') } %>
       <% end %>
       <% if subject.status == "Inactivo" %>
-        <%= link_to I18n.t('enable'), subject_path(subject,:disable => 0),
+        <%= link_to image_tag(('log_desactivar.png'), alt: I18n.t('enable')), subject_path(subject,:disable => 0),
           data: { confirm: I18n.t('seguro') }  %>
       <% end %>
     </td>
