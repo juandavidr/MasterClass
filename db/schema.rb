@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131105054723) do
+ActiveRecord::Schema.define(version: 20131113110656) do
 
   create_table "preregister_subjects", force: true do |t|
     t.integer  "semester_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20131105054723) do
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "program_id"
   end
 
   create_table "program_semesters", force: true do |t|
@@ -56,6 +57,7 @@ ActiveRecord::Schema.define(version: 20131105054723) do
     t.datetime "finaldate"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "stype"
   end
 
   create_table "subject_programs", force: true do |t|
@@ -89,7 +91,7 @@ ActiveRecord::Schema.define(version: 20131105054723) do
   create_table "subjects", force: true do |t|
     t.string   "name"
     t.string   "code"
-    t.string   "quota"
+    t.integer  "quota",      default: 0
     t.integer  "credits"
     t.string   "status"
     t.datetime "created_at"

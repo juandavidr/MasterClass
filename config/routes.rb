@@ -30,11 +30,20 @@ MasterClassNB::Application.routes.draw do
   get "users/edit"
   get "users/show"
   
+  
+  match "estadisticas", to: 'estadisticas#index', via: 'get'
+  match "users/cargar_usuarios", to: 'users#cargar_usuarios', via: 'get'
+  match "users/mostrar", to: 'users#ver', via: 'get'
+  
+  
 
   match '/help', to: 'general#help', via: 'get'
   match '/about',   to: 'general#about',   via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'  
+  match '/preregister_subjects', to: 'preregister_subjects#update',     via: 'patch'  
+  match '/preregister_subjects', to: 'preregister_subjects#destroy',     via: 'delete'  
+#  match '/preregister_subjects', to: 'preregister_subjects#show',     via: 'p'  
 
   root 'general#index'
   

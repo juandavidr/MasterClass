@@ -1,0 +1,25 @@
+<% provide(:title, 'New Preregister Subject') %>
+<h1>New Preregister Subject</h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for @preregister_subject do |f| %>
+
+
+
+      <%= label_tag "Materia" %>
+      <%= select_tag "subject_id", options_from_collection_for_select(@subjects, 'id', 'name') %>
+
+      <%= label_tag "Semestre" %>
+      <%= select_tag "semester_id", options_from_collection_for_select(@semesters, 'id', 'name') %>
+
+      <%= label_tag "Estado" %>
+      <%=f.select(:status,options_for_select([["Pendiente", "Pendiente"]]))%>   
+
+      <%= hidden_field_tag "user_id", @user_id %>  
+      <%= hidden_field_tag "program_id", @program_id %>  
+
+
+      <%= f.submit "Guardar preregistro", class: "btn" %>
+      <% end %>
+    </div>
+  </div>

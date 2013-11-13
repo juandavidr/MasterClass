@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Bienvenido, <%= @user.firstname %></h1>
+    <p>
+     Ha sido registrado en MasterClass,
+Su nombre de usuario es: <%= @user.email %>.
+<br/>
+Su contraseña por defecto es: 123456.<br/>
+    </p>
+    <p>
+      Para ingresar al sitio solamente de click en el siguiente link: <%= @url %>..
+    </p>
+    
+  </body>
+</html>

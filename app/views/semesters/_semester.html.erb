@@ -1,0 +1,21 @@
+<tr>
+    <td><%= "#{semester.name}" %></td>
+    <td><%= "#{semester.stype}" %></td>
+    <td><%= "#{semester.startdate.strftime("%Y-%m-%d")}" %></td>
+    <td><%= "#{semester.finaldate.strftime("%Y-%m-%d")}" %></td>
+    <td><%= "#{semester.status}" %></td>
+  <% if current_user.usertype.eql?("Coordinador") || current_user.usertype.eql?("Admin") %>
+    <td><%= link_to I18n.t('delete'), semester, method: :delete,  data: { confirm: I18n.t('seguro') } %></td>
+    <td><%= link_to I18n.t('editar'),  edit_semester_path(semester) %></td>
+    <td>
+      <% if semester.status == "Activo" %>
+        <%= link_to I18n.t('disable'), semester_path(semester,:disable => 1),
+          data: { confirm: I18n.t('seguro') } %>
+      <% end %>
+      <% if semester.status == "Inactivo" %>
+        <%= link_to I18n.t('enable'), semester_path(semester,:disable => 0),
+          data: { confirm: I18n.t('seguro') }  %>
+      <% end %>
+    </td>
+  <% end %>
+</tr>

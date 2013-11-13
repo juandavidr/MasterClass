@@ -30,6 +30,10 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'prime-rails' , '0.0.16'
+#graficas!
+gem 'lazy_high_charts'
+#servicios rest
+gem 'httparty'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

@@ -6,45 +6,47 @@
     <%= stylesheet_link_tag "application", media: "all",
       "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
     <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag "aristo/theme" %>  
+    <%= stylesheet_link_tag "prime-ui" %>   
+    <%= javascript_include_tag "prime-ui" %>  
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
-  <body class="blurBg-false" style="background-color:#EBEBEB">
-
-    <header class="navbar navbar-fixed-top navbar-inverse">
-      <div class="navbar-inner">
-        <div class="container">
-          <%= link_to "Master Class", '#', id: "logo" %>
-          <nav>
-            <ul class="nav pull-right">
-              <% if signed_in? %>        
-                <li><%= link_to "Usuarios",    users_url %></li>
-                <li><%= link_to "Programas", programs_url %></li>
-                <li><%= link_to "Materias", subjects_url %></li>
-                <li><%= link_to "Semestres", semesters_url%></li>
-              <% else %>
-                <li><%= link_to "Ingresar", signin_path %></li>
-
+  <body style="padding-top: 0px">
+    <%= render 'layouts/header' %>
+    <div id="container" >
+      <div id="main1">
+        <div id="main2">
+          <div id="left">
+            <div class="column-in">
+              <%= render 'layouts/menu' %>
+            </div>
+          </div>
+          <div id="right" >
+            <div class="column-in">
+              <% flash.each do |key, value| %>
+                <div class="alert alert-<%= key %>">
+                  <%= value %>
+                </div>
               <% end %>
-            </ul>
-          </nav>
+              <%= yield %>
+            </div>
+          </div>
         </div>
       </div>
-    </header>
-    <div class="container">
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>">
-          <%= value %>
-        </div>
-      <% end %>
-      <%= yield %>
-<%#= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
     </div>
-    <%= javascript_include_tag "formoid-default-skyblue" %>
+
+
+
+    <%= render 'layouts/footer' %>
+
+
+
   </body>
 </html>

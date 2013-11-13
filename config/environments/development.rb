@@ -35,4 +35,6 @@ MasterClassNB::Application.configure do
     password:             '(cobra)+[vigia]1986',
     authentication:       'plain',
     enable_starttls_auto: true  }
+  
+  config.gem "httparty"
 end

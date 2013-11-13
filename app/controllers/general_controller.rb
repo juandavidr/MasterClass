@@ -3,7 +3,7 @@
 
 class GeneralController < ApplicationController
   
-   def home
+  def home
   end
 
   def help

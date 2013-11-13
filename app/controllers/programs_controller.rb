@@ -8,32 +8,32 @@ class ProgramsController < ApplicationController
   end
 
   def edit
-     @program = Program.find(params[:id])
+    @program = Program.find(params[:id])
   end
   
   def show
-     if !params[:disable].nil?
-         @program = Program.find(params[:id])
+    if !params[:disable].nil?
+      @program = Program.find(params[:id])
       if params[:disable] == "1"       
-         @program.update_attribute(:status, "Inactivo")
-         flash[:success] = I18n.t('programa.deshabilitado') 
+        @program.update_attribute(:status, "Inactivo")
+        flash[:success] = I18n.t('programa.deshabilitado') 
       else       
-         @program.update_attribute(:status, "Activo")
-         flash[:success] = I18n.t('programa.habilitado')
+        @program.update_attribute(:status, "Activo")
+        flash[:success] = I18n.t('programa.habilitado')
       end
     end
     redirect_to programs_url
   end
   
   def update
-      @program = Program.find(params[:id])
-      if @program.update_attributes(program_params)       
-        flash[:success] = "La informacion del programa se ha actualizado exitosamente"
-        redirect_to programs_url
-      else
-        flash[:error]="Ocurrio un error al editar el usuario"
-        render 'edit'
-      end
+    @program = Program.find(params[:id])
+    if @program.update_attributes(program_params)       
+      flash[:success] = "La informacion del programa se ha actualizado exitosamente"
+      redirect_to programs_url
+    else
+      flash[:error]="Ocurrio un error al editar el usuario"
+      render 'edit'
+    end
   end
 
   def create
@@ -42,7 +42,7 @@ class ProgramsController < ApplicationController
       flash[:success] = 'Mensaje de exito'
       redirect_to programs_url
     else     
-       flash[:error] = 'Ha ocurrido un error'
+      flash[:error] = 'Ha ocurrido un error'
       render 'new'
     end
   end
@@ -52,5 +52,9 @@ class ProgramsController < ApplicationController
   def program_params
     params.require(:program).permit(:name,:code,:objective,:status)
       
+  end
+  
+  def signed_in_user
+    redirect_to signin_url, notice: "Por favor ingrese antes de poder realizar esta acción" unless signed_in?
   end
 end

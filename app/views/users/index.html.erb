@@ -1,35 +1,47 @@
-<%= link_to "Add new User", users_new_path %>
-</br></br></br>
+<% if current_user.usertype.eql?("Coordinador") || current_user.usertype.eql?("Admin") %>
+  <div id="main1">
+    <div id="main2">
+      <div id="left">
+        <div class="column-in">
+          <h2>
+            <p id="lccont" class="btn">
+              <%= link_to "Agregar usuario", users_new_path %> 
+            </p>
+          </h2>
+        </div>
+      </div>
+      <%  if current_user.usertype.eql?("Admin") %>
+        <div id="middle">
+          <div class="column-in" style="padding-left: 10px;">
+            <h2>  
+              <p id="mccont"  class="btn"> 
+                <%= link_to "Cargar usuarios", users_cargar_usuarios_path %> 
+              </p>
+            </h2>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 <% unless @user_list.nil? %>
   <table  border="1">
     <tr>
 
-      <td>Nombre</td>
-      <td>Email</td>
-<%#*Agregar  tipo de usuario si esta autenticado%>
+      <th>Nombre</td>
+      <th>e-mail</td>
 
-      <td>Estado</td>
+        <% if current_user.usertype.eql?("Coordinador") || current_user.usertype.eql?("Admin")%>
 
-      <td colspan="3">Acciones</td>
+        <th>Estado</td>
 
+        <th colspan="4">Acciones</td>
+        <% else %>
+        <th >Acciones</td> 
+        <% end %>
     </tr>
-    <% for user in @user_list do %>  
-        <tr>
-          <td><%= "#{user.firstname}" %></td>
-          <td><%= "#{user.email}" %></td>
-          <td><%= "#{user.status}" %></td>
-          <td><%= link_to I18n.t('delete'), user, method: :delete,  data: { confirm: I18n.t('seguro') } %></td>
-          <td><%= link_to I18n.t('editar'),  edit_user_path(user) %></td>
-          <td>
-            <% if user.status == "Activo" %>
-              <%= link_to I18n.t('disable'), user_path(user,:disable => 1),
-                data: { confirm: I18n.t('seguro') } %>
-            <% end %>
-            <% if user.status == "Inactivo" %>
-              <%= link_to I18n.t('enable'), user_path(user,:disable => 0),
-                data: { confirm: I18n.t('seguro') }  %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>  
-    <% end %>
+
+    <%= render @user_list %>
+  </table>
+  <%= will_paginate @user_list  %>
+<% end %>

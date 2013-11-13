@@ -1,0 +1,51 @@
+<% provide(:title, "usuario") %>
+
+<div class="formoid-default-skyblue" style="background-color:#FFFFFF;font-size:14px;font-family:'Open Sans','Helvetica Neue','Helvetica',Arial,Verdana,sans-serif;color:#666666;max-width:480px;min-width:150px">
+  <div class="title">
+    <h1>
+      <%= @user.firstname %> <%= @user.lastname %>
+    </h1>
+    Código: <%= @user.code %><br/>
+    Identificación: <%= @user.identificationtype %> <%= @user.identification %><br/>
+    Estado: <%= @user.status %><br/>
+    Tipo de usuario: <%= @user.usertype %><br/>
+    E-mail: <%= @user.email %><br/>
+  </div>
+  <div class="span6 offset3" >
+    <% if @user.programs.any? %>
+      <h3>Programas</h3>
+      <ol class="programs">
+  <%#*<table  border="1">%>
+  <%#*<th>Código</th>%>
+  <%#*<th>Nombre</th>%>
+  <%#*<th>Estado</th>%>
+  <%#*<th colspan="3">Acciones</th>%>
+  <%#*</table>%>
+        <%= @programs.each do |program| %>
+          <%=   render :partial=>"program1",:locals => {:program => program} %>
+        <% end %>
+      </ol>
+  <%#= will_paginate @programs %>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="span8">
+
+      <% if @user.preregister_subjects.any? %>
+
+        <% if @user.usertype.eql?("Estudiante") && !@program.nil?%>
+
+          <h3><%=I18n.t('usuario.preregistro')+" "+@program.name %></h3>
+          <%= link_to "Eliminar todas", preregister_subjects_path(:all => 1,:user_id =>@user.id,:program_id =>@program.id), method: :delete,
+            data: { confirm: "¿Esta seguro de realizar esta acción? \n Esta acción eliminara todo el historial de materias" } %>
+          <ol class="programs">
+            <%= render @preregister_subjects %>
+          </ol>
+          <%= will_paginate @preregister_subjects %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

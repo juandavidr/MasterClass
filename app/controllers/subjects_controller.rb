@@ -1,4 +1,5 @@
 class SubjectsController < ApplicationController
+  before_action :signed_in_user
   def new
     @subject = Subject.new
   end
@@ -8,19 +9,19 @@ class SubjectsController < ApplicationController
   end
 
   def edit
-     @subject =  Subject.find_by_id(params[:id])
+    @subject =  Subject.find_by_id(params[:id])
   end
   
   def update
-     @subject = Subject.find_by_id(params[:id])
+    @subject = Subject.find_by_id(params[:id])
     if @subject.update_attributes(subject_params)
-#        Actualizar programas a los que pertenece la materia
-        flash[:success] = "Subject was updated"
-        redirect_to subjects_path
-      else
-         flash[:success] = "Ocurrio un error actualizando al usuario"
-        render "edit"
-      end
+      #        Actualizar programas a los que pertenece la materia
+      flash[:success] = "Subject was updated"
+      redirect_to subjects_path
+    else
+      flash[:success] = "Ocurrio un error actualizando al usuario"
+      render "edit"
+    end
   end
   
   def disable  
@@ -31,12 +32,12 @@ class SubjectsController < ApplicationController
       @subject = Subject.find_by_id(params[:id])
       if params[:disable] == "1"
      
-         @subject.update_attribute(:status, "Inactivo")
-         flash[:success] = I18n.t('subject.deshabilitado') 
+        @subject.update_attribute(:status, "Inactivo")
+        flash[:success] = I18n.t('subject.deshabilitado') 
       else
         
-         @subject.update_attribute(:status, "Activo")
-         flash[:success] = I18n.t('subject.habilitado')
+        @subject.update_attribute(:status, "Activo")
+        flash[:success] = I18n.t('subject.habilitado')
       end
     end
     redirect_to subjects_url
@@ -63,5 +64,9 @@ class SubjectsController < ApplicationController
 
   def subject_params
     params.require(:subject).permit(:name,:code,:quota,:credits,:status)
+  end
+  
+  def signed_in_user
+    redirect_to signin_url, notice: "Please sign in." unless signed_in?
   end
 end

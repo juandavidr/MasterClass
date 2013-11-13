@@ -1,0 +1,19 @@
+<tr>
+  <td><%= "#{program.code}" %></td>
+  <td><%= "#{program.name}" %></td>
+  <td><%= "#{program.status}" %></td>
+  <% if current_user.usertype.eql?("Coordinador") || current_user.usertype.eql?("Admin") %>
+    <td><%= link_to I18n.t('delete'), program, method: :delete,  data: { confirm: I18n.t('seguro') } %></td>
+    <td><%= link_to I18n.t('editar'),  edit_program_path(program) %></td>
+    <td>
+      <% if program.status == "Activo" %>
+        <%= link_to I18n.t('disable'), program_path(program,:disable => 1),
+          data: { confirm: I18n.t('seguro') } %>
+      <% end %>
+      <% if program.status == "Inactivo" %>
+        <%= link_to I18n.t('enable'), program_path(program,:disable => 0),
+          data: { confirm: I18n.t('seguro') }  %>
+      <% end %>
+    </td>
+  <% end %>
+</tr>

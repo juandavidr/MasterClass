@@ -1,0 +1,25 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<footer >
+  <div id="footer">
+    <div class="column-in">
+      <div id="debug">
+<%#= debug(params) if Rails.env.development? %>
+      </div>
+      <small>
+        <%= link_to image_tag("masterclass_small.png", alt: "MasterClass"), root_path %> por Juan David Rodríguez
+      </small>
+      <nav>
+        <ul>
+          <li><%= link_to "About",   about_path %></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+
+<%= javascript_include_tag "formoid-default-skyblue" %>
