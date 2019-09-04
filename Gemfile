@@ -45,7 +45,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'faker', '1.1.2'
 
 #Pagination gems
-gem 'will_paginate', '3.0.4'
+gem 'will_paginate', '3.0.5'
 gem 'bootstrap-will_paginate', '0.0.9'
 
 group :doc do
